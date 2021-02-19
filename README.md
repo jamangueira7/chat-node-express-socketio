@@ -27,6 +27,13 @@ O projeto é um chat com NodeJS, Express e Socket.io
 
 Projeto feito acompanado o video [aqui](https://www.youtube.com/watch?v=jD7FnbI76Hg)
 
+<p align="center">
+  <img alt="pagina inicial" src=".github/imagem1.PNG" width="100%">
+</p>
+
+<p align="center">
+  <img alt="Chat" src=".github/imagem2.PNG" width="100%">
+</p>
 
 ## 🚀 Como Rodar
 
