@@ -2,6 +2,7 @@ const path = require('path');
 const http = require('http');
 const express = require('express');
 const socketio = require('socket.io');
+const formatMessage = require('./utils/messages');
 
 const app = express();
 const server = http.createServer(app);
@@ -10,22 +11,24 @@ const io = socketio(server);
 //set static folder
 app.use(express.static(path.join(__dirname, 'public')));
 
+const botName = 'ChatCord Bot';
+
 //Rodar quando os clientes conectarem
 io.on('connection', socket => {
     //Bem vindo usuario atual
-    socket.emit('message', 'Bem vindo ao ChatCord!');
+    socket.emit('message', formatMessage(botName, 'Bem vindo ao ChatCord!'));
 
     //rodar quando os usuarios conectarem
-    socket.broadcast.emit('message', 'Um usuario entrou no chat.');
+    socket.broadcast.emit('message', formatMessage(botName,'Um usuario entrou no chat.'));
 
     //rodar quando um client desconectar
     socket.on('disconnect', () => {
-        io.emit('message', 'Bem vindo ao Chat!');
+        io.emit('message', formatMessage(botName,'Um usuario saiu do chat!'));
     });
 
     //Escutar chatMessage
     socket.on('chatMessage', (msg) => {
-        io.emit('message', msg);
+        io.emit('message', formatMessage('USER', msg));
     });
 });
 
