@@ -7,6 +7,8 @@ const { username, room } = Qs.parse(location.search, {
    ignoreQueryPrefix: true
 });
 
+socket.emit('joinRoom', { username, room });
+
 //Mensagens do servidor
 socket.on('message', (message) => {
     console.log(message);

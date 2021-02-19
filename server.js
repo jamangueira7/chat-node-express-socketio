@@ -3,6 +3,7 @@ const http = require('http');
 const express = require('express');
 const socketio = require('socket.io');
 const formatMessage = require('./utils/messages');
+const { userJoin, getCurrentJoin } = require('./utils/users');
 
 const app = express();
 const server = http.createServer(app);
@@ -15,20 +16,30 @@ const botName = 'ChatCord Bot';
 
 //Rodar quando os clientes conectarem
 io.on('connection', socket => {
-    //Bem vindo usuario atual
-    socket.emit('message', formatMessage(botName, 'Bem vindo ao ChatCord!'));
+    socket.on('joinRoom', ({ username, room }) => {
 
-    //rodar quando os usuarios conectarem
-    socket.broadcast.emit('message', formatMessage(botName,'Um usuario entrou no chat.'));
+        const user = userJoin(socket.id, username, room);
 
-    //rodar quando um client desconectar
-    socket.on('disconnect', () => {
-        io.emit('message', formatMessage(botName,'Um usuario saiu do chat!'));
+        socket.join(user.room);
+
+        //Bem vindo usuario atual
+        socket.emit('message', formatMessage(botName, 'Bem vindo ao ChatCord!'));
+
+        //rodar quando os usuarios conectarem
+        socket.broadcast.to(user.room).emit(
+            'message',
+            formatMessage(botName,`O usuario ${user.username} entrou no chat.`)
+        );
     });
 
     //Escutar chatMessage
     socket.on('chatMessage', (msg) => {
         io.emit('message', formatMessage('USER', msg));
+    });
+
+    //rodar quando um client desconectar
+    socket.on('disconnect', () => {
+        io.emit('message', formatMessage(botName,'Um usuario saiu do chat!'));
     });
 });
 
