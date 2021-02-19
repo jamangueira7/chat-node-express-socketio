@@ -13,7 +13,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 //Rodar quando os clientes conectarem
 io.on('connection', socket => {
     //Bem vindo usuario atual
-    socket.emit('message', 'Bem vindo ao Chat!');
+    socket.emit('message', 'Bem vindo ao ChatCord!');
 
     //rodar quando os usuarios conectarem
     socket.broadcast.emit('message', 'Um usuario entrou no chat.');
