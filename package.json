@@ -1,0 +1,19 @@
+{
+  "name": "chat-node-express-socketio",
+  "version": "1.0.0",
+  "description": "Realtime chat app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jamangueira7/chat-node-express-socketio.git"
+  },
+  "author": "João Mangueira",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jamangueira7/chat-node-express-socketio/issues"
+  },
+  "homepage": "https://github.com/jamangueira7/chat-node-express-socketio#readme"
+}
