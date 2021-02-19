@@ -19,7 +19,9 @@ chatForm.addEventListener('submit', (e) => {
     //Mandando mensagem ao servidor
     socket.emit('chatMessage', msg);
 
-    //
+    //limpar input
+    e.target.elements.msg.value = "";
+    e.target.elements.msg.focus();
 });
 
 //Mandando msg para o DOM
