@@ -35,6 +35,10 @@ Projeto feito acompanado o video [aqui](https://www.youtube.com/watch?v=jD7FnbI7
   <img alt="Chat" src=".github/imagem2.PNG" width="100%">
 </p>
 
+<p align="center">
+  <img alt="Chat" src=".github/animated.gif" width="100%">
+</p>
+
 ## 🚀 Como Rodar
 
  - Clone o projeto.
